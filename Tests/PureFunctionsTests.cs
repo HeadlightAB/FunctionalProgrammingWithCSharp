@@ -16,7 +16,7 @@ namespace Tests
         public void Add_should_produce_the_Sum()
         {
             var sut = new Code();
-            
+
             const int x = 1;
             const int y = 2;
 
@@ -55,14 +55,14 @@ namespace Tests
                 Assert.Equal(1, result);
             }
         }
-    }
 
-    public class Code
-    {
-        public int Add(int a, int b) => a + b;
+        public class Code
+        {
+            public int Add(int a, int b) => a + b;
 
-        private int _counter = 0;
+            private int _counter = 0;
 
-        public int Increment(int a) => _counter += a;
+            public int Increment(int a) => _counter += a;
+        }
     }
 }
