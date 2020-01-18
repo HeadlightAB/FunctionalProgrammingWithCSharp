@@ -27,7 +27,7 @@ namespace Tests
         }
 
         [Theory]
-        [InlineData(1,2,3,1000)]
+        [InlineData(1, 2, 3, 1000)]
         public void Add_should_produce_Sum_for_every_pair_of_inputs(int x, int y, int sum, int numberOfInvocations)
         {
             var sut = new Code();
