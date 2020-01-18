@@ -47,7 +47,7 @@ namespace Tests
         {
             var sut = new Code();
 
-            for (int i = 0; i < numberOfInvocations; i++)
+            for (var i = 0; i < numberOfInvocations; i++)
             {
                 var result = sut.Increment(a);
 
