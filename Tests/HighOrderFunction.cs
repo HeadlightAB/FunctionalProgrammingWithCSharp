@@ -89,13 +89,7 @@ namespace Tests
 
         ///////////////////////////////////////////
 
-        private bool IsEven(Func<int, int> func, int max)
-        {
-            var r = func(max);
-            _output.WriteLine($"{r}");
-
-            return r % 2 == 0;
-        }
+        private static bool IsEven(Func<int, int> func, int max) => func(max) % 2 == 0;
 
         ///////////////////////////////////////////
 
