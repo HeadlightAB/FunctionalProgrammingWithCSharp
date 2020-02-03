@@ -87,6 +87,22 @@ namespace Tests
             _output.WriteLine($"{result}");
         }
 
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        public void FunctionAsAParameter_OneMoreTest(int x)
+        {
+            static int Double(int a) => 2 * a;
+
+            var result = IsEven(Double, x);
+
+            Assert.True(result);
+        }
+
         ///////////////////////////////////////////
 
         private static bool IsEven(Func<int, int> func, int max) => func(max) % 2 == 0;
