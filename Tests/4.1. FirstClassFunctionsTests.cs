@@ -17,6 +17,13 @@ namespace Tests
             Assert.Equal(3, aSumFuncLambda(1, 2));
         }
 
+        private int ASumFuncNamed(int x, int y)
+        {
+            return x + y;
+        }
+
+        ///////////////////////////////////////////
+
         [Fact]
         public void Sort_of_first_class_local_functions()
         {
@@ -29,11 +36,6 @@ namespace Tests
 
             Assert.Equal(3, ASumLocalFunc(1, 2));
             Assert.Equal(3, ASumLocalEpressionBodyFunc(1, 2));
-        }
-
-        private int ASumFuncNamed(int x, int y)
-        {
-            return x + y;
         }
     }
 }

@@ -17,7 +17,6 @@ namespace Tests
         public void Add_should_produce_the_Sum()
         {
             var sut = new Code();
-
             const int x = 1;
             const int y = 2;
 
@@ -28,6 +27,8 @@ namespace Tests
 
         [Theory]
         [InlineData(1, 2, 3, 1000)]
+        [InlineData(2, 3, 5, 1000)]
+        [InlineData(21, 32, 53, 98765)]
         public void Add_should_produce_Sum_for_every_pair_of_inputs(int x, int y, int sum, int numberOfInvocations)
         {
             var sut = new Code();
@@ -53,6 +54,7 @@ namespace Tests
                 var result = sut.Increment(a);
 
                 _output.WriteLine($"(invocation {i}) Increment {a} = {result}");
+
                 try
                 {
                     Assert.Equal(1, result);

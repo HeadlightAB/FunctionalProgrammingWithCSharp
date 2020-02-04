@@ -20,6 +20,7 @@ namespace Tests
         [InlineData(2, 2)]
         [InlineData(3, 6)]
         [InlineData(4, 24)]
+        [InlineData(9, 362880)]
         [InlineData(10, 3628800)]
         public void Recursive_should_produce_expected_result(uint x, uint expected)
         {
@@ -36,6 +37,7 @@ namespace Tests
         [InlineData(2, 2)]
         [InlineData(3, 6)]
         [InlineData(4, 24)]
+        [InlineData(9, 362880)]
         [InlineData(10, 3628800)]
         public void Iterative_should_produce_expected_result(uint x, uint expected)
         {
@@ -62,6 +64,7 @@ namespace Tests
         public uint FactorialIteration(uint x)
         {
             uint result = 1;
+
             for (uint i = 2; i <= x; i++)
             {
                 result *= i;

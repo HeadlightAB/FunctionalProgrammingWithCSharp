@@ -43,6 +43,7 @@ namespace Tests
             var expected = 3;
 
             var func = SumFunction();
+
             var result = func(1, 2);
 
             Assert.Equal(expected, result);
@@ -76,21 +77,6 @@ namespace Tests
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(2)]
-        [InlineData(10)]
-        [InlineData(100)]
-        public void FunctionAsAParameter_Test(int p)
-        {
-            static int Random(int max) => new Random().Next(max);
-
-            var result = IsEven(Random, p) ? "even" : "odd";
-
-            _output.WriteLine($"{result}");
-        }
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
         [InlineData(3)]
         [InlineData(4)]
         [InlineData(5)]
@@ -103,6 +89,21 @@ namespace Tests
             Assert.True(result);
         }
 
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(10)]
+        [InlineData(100)]
+        public void FunctionAsAParameter_Test(int p)
+        {
+            static int Random(int max) => new Random().Next(max);
+
+            var result = IsEven(Random, p) ? "even" : "odd";
+
+            _output.WriteLine($"{result}");
+        }
+        
         ///////////////////////////////////////////
 
         private static bool IsEven(Func<int, int> func, int max) => func(max) % 2 == 0;

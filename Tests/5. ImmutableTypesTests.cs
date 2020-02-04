@@ -15,7 +15,7 @@ namespace Tests
                 rectangle.Grow(10);
 
                 Assert.Equal(11, rectangle.Length);
-                Assert.Equal(11, rectangleBackup.Length);
+                Assert.NotEqual(1, rectangleBackup.Length);
                 Assert.Same(rectangle, rectangleBackup);
             }
 
@@ -64,9 +64,11 @@ namespace Tests
 
                 Assert.Same(rectangleOne, rectangleBackup);
 
-                rectangleOne = rectangleOne.Grow(10);
+                var rectangleTwo = rectangleOne.Grow(10);
 
-                Assert.NotSame(rectangleOne, rectangleBackup);
+                Assert.Same(rectangleOne, rectangleBackup);
+                Assert.NotSame(rectangleTwo, rectangleBackup);
+                Assert.NotSame(rectangleTwo, rectangleOne);
             }
 
             public class Rectangle

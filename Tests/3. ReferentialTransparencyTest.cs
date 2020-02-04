@@ -17,6 +17,13 @@ namespace Tests
             Assert.Equal(resultReplaced, resultFromTransparentFunction);
         }
 
+        public int SumTransparent(int x, int y)
+        {
+            return x + y;
+        }
+
+        ///////////////////////////////////////////
+
         [Fact]
         public void Not_able_to_replace_with_result_at_all_times()
         {
@@ -29,12 +36,7 @@ namespace Tests
             Assert.Equal(3, result1);
             Assert.Equal(2, result2);
         }
-
-        public int SumTransparent(int x, int y)
-        {
-            return x + y;
-        }
-
+        
         public class Sum
         {
             private readonly int _x;
