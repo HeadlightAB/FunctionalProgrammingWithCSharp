@@ -4,11 +4,11 @@ using Xunit.Abstractions;
 
 namespace Tests
 {
-    public class HighOrderFunctionsTest
+    public class HigherOrderFunctionsTest
     {
         private readonly ITestOutputHelper _output;
 
-        public HighOrderFunctionsTest(ITestOutputHelper output)
+        public HigherOrderFunctionsTest(ITestOutputHelper output)
         {
             _output = output;
         }
