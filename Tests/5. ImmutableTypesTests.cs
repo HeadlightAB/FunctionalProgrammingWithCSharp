@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using RectangleExtensions;
+using Tests;
+using Xunit;
 
 namespace Tests
 {
@@ -47,10 +49,10 @@ namespace Tests
 
                 var rectangleTwo = rectangleOne.Grow(10);
 
-                Assert.Equal(1, rectangleOne.Length);
+                Assert.Equal(1, rectangleOne.Width);
                 Assert.Equal(2, rectangleOne.Height);
 
-                Assert.Equal(11, rectangleTwo.Length);
+                Assert.Equal(11, rectangleTwo.Width);
                 Assert.Equal(12, rectangleTwo.Height);
 
                 Assert.NotSame(rectangleOne, rectangleTwo);
@@ -71,22 +73,76 @@ namespace Tests
                 Assert.NotSame(rectangleTwo, rectangleOne);
             }
 
+            [Fact]
+            public void Grow_using_extension_method()
+            {
+                var rectangle = new Rectangle(1,2);
+                var rectangleBackup = rectangle;
+
+                var result = rectangle.Swell(10);
+
+                Assert.Equal(12, result.Height);
+                Assert.Equal(11, result.Width);
+
+                Assert.NotSame(rectangleBackup, result);
+                Assert.NotSame(rectangle, result);
+                Assert.Same(rectangle, rectangleBackup);
+            }
+
             public class Rectangle
             {
-                public int Length { get; }
+                public int Width { get; }
                 public int Height { get; }
 
-                public Rectangle(int length, int height)
+                public Rectangle(int width, int height)
                 {
-                    Length = length;
+                    Width = width;
                     Height = height;
                 }
 
                 public Rectangle Grow(int growth)
                 {
-                    return new Rectangle(Length + growth, Height + growth);
+                    return new Rectangle(Width + growth, Height + growth);
+                }
+
+                public Rectangle GrowChained(int growth)
+                {
+                    return Widen(growth).Raise(growth);
+                }
+
+                public Rectangle GrowUsingWith(int growth)
+                {
+                    return With(Width + growth, Height + growth);
+                }
+
+                private Rectangle Widen(int growWidth)
+                {
+                    return this.With(length: this.Width + growWidth);
+                }
+
+                private Rectangle Raise(int growHeight)
+                {
+                    return this.With(height: this.Height + growHeight);
+                }
+
+                private Rectangle With(int length = -1, int height = -1)
+                {
+                    return new Rectangle(length == -1 ? this.Width : length, height == -1 ? this.Height : height);
                 }
             }
+        }
+    }
+}
+
+namespace RectangleExtensions
+{
+    using static ImmutableTypesTests.ThisIsImmutableTests;
+
+    public static class RectangleExtensions
+    {
+        public static Rectangle Swell(this Rectangle rectangle, int growth)
+        {
+            return rectangle.Grow(growth);
         }
     }
 }
