@@ -106,7 +106,7 @@ namespace Tests
         
         ///////////////////////////////////////////
 
-        private static bool IsEven(Func<int, int> func, int max) => func(max) % 2 == 0;
+        private static bool IsEven(Func<int, int> func, int x) => func(x) % 2 == 0;
 
         ///////////////////////////////////////////
 
