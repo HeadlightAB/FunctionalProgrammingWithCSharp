@@ -16,25 +16,25 @@ namespace Tests
 
                 rectangle.Grow(10);
 
-                Assert.Equal(11, rectangle.Length);
-                Assert.NotEqual(1, rectangleBackup.Length);
+                Assert.Equal(11, rectangle.Width);
+                Assert.NotEqual(1, rectangleBackup.Width);
                 Assert.Same(rectangle, rectangleBackup);
             }
 
             public class MutableRectangle
             {
-                public int Length { get; private set; }
+                public int Width { get; private set; }
                 public int Height { get; private set; }
 
-                public MutableRectangle(int length, int height)
+                public MutableRectangle(int width, int height)
                 {
-                    Length = length;
+                    Width = width;
                     Height = height;
                 }
 
                 public void Grow(int growth)
                 {
-                    Length += growth;
+                    Width += growth;
                     Height += growth;
                 }
             }
@@ -100,35 +100,17 @@ namespace Tests
                     Height = height;
                 }
 
-                public Rectangle Grow(int growth)
-                {
-                    return new Rectangle(Width + growth, Height + growth);
-                }
+                public Rectangle Grow(int growth) => new Rectangle(Width + growth, Height + growth);
 
-                public Rectangle GrowChained(int growth)
-                {
-                    return Widen(growth).Raise(growth);
-                }
+                public Rectangle GrowChained(int growth) => Widen(growth).Raise(growth);
 
-                public Rectangle GrowUsingWith(int growth)
-                {
-                    return With(Width + growth, Height + growth);
-                }
+                public Rectangle GrowUsingWith(int growth) => With(Width + growth, Height + growth);
 
-                private Rectangle Widen(int growWidth)
-                {
-                    return this.With(length: this.Width + growWidth);
-                }
+                private Rectangle Widen(int growWidth) => With(width: Width + growWidth);
 
-                private Rectangle Raise(int growHeight)
-                {
-                    return this.With(height: this.Height + growHeight);
-                }
+                private Rectangle Raise(int growHeight) => With(height: Height + growHeight);
 
-                private Rectangle With(int length = -1, int height = -1)
-                {
-                    return new Rectangle(length == -1 ? this.Width : length, height == -1 ? this.Height : height);
-                }
+                private Rectangle With(int width = -1, int height = -1) => new Rectangle(width == -1 ? Width : width, height == -1 ? Height : height);
             }
         }
     }
@@ -140,9 +122,6 @@ namespace RectangleExtensions
 
     public static class RectangleExtensions
     {
-        public static Rectangle Swell(this Rectangle rectangle, int growth)
-        {
-            return rectangle.Grow(growth);
-        }
+        public static Rectangle Swell(this Rectangle rectangle, int growth) => rectangle.Grow(growth);
     }
 }

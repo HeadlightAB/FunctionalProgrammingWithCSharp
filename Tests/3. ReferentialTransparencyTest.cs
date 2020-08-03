@@ -17,10 +17,7 @@ namespace Tests
             Assert.Equal(resultReplaced, resultFromTransparentFunction);
         }
 
-        public int SumTransparent(int x, int y)
-        {
-            return x + y;
-        }
+        public int SumTransparent(int x, int y) => x + y;
 
         ///////////////////////////////////////////
 
@@ -41,15 +38,9 @@ namespace Tests
         {
             private readonly int _x;
 
-            public Sum(int x)
-            {
-                _x = x % 2;
-            }
+            public Sum(int x) => _x = x % 2;
 
-            public int NotTransparent(int y)
-            {
-                return _x + y;
-            }
+            public int NotTransparent(int y) => _x + y;
         }
     }
 }

@@ -61,6 +61,9 @@ namespace Tests
             return x * FactorialRecursive(x - 1);
         }
 
+        public uint FactorialRecursiveAsExpressionBody(uint x) => x <= 1 ? 1 : x * FactorialRecursiveAsExpressionBody(x - 1);
+       
+
         public uint FactorialIteration(uint x)
         {
             uint result = 1;

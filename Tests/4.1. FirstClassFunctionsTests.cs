@@ -17,10 +17,7 @@ namespace Tests
             Assert.Equal(3, aSumFuncLambda(1, 2));
         }
 
-        private int ASumFuncNamed(int x, int y)
-        {
-            return x + y;
-        }
+        private int ASumFuncNamed(int x, int y) => x + y;
 
         ///////////////////////////////////////////
 
